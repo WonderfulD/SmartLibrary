@@ -1,6 +1,6 @@
 # 智慧图书馆
 
-[演示地址](http://47.93.44.153/)
+[演示地址](https://library.ruiwang.space/)
 
 #### 介绍
 - 项目名称：智慧图书馆(基于SpringBoot与Vue的智慧图书馆系统设计与实现)

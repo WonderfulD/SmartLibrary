@@ -1,6 +1,6 @@
 # Smart Library
 
-[Try me](http://47.93.44.153/)
+[Try me](https://library.ruiwang.space/)
 
 #### Introduction
 - Project Name: Smart Library(The Design and Implementation of a Smart Library System Based on SpringBoot and Vue)
