@@ -74,3 +74,6 @@ hs_err_pid*
 ruoyi-admin/src/main/resources/application.yml
 ruoyi-admin/src/main/resources/application-druid.yml
 ruoyi-admin/src/main/java/com/ruoyi/config/RedissonConfig.java
+
+# MacOS
+./.DS_Store
