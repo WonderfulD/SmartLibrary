@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ruoyi.extension.mapper.BookBorrowExtensionMapper">
+    
+    <resultMap type="BookBorrowExtension" id="BookBorrowExtensionResult">
+        <result property="id"    column="id"    />
+        <result property="bookId"    column="book_id"    />
+        <result property="borrowId"    column="borrow_id"    />
+        <result property="requestTime"    column="request_time"    />
+        <result property="approvalTime"    column="approval_time"    />
+        <result property="requestedDueTime"    column="requested_due_time"    />
+        <result property="approvedDueTime"    column="approved_due_time"    />
+        <result property="status"    column="status"    />
+        <result property="approvalComment"    column="approval_comment"    />
+        <result property="gmtCreated"    column="gmt_created"    />
+        <result property="gmtModified"    column="gmt_modified"    />
+    </resultMap>
+
+    <sql id="selectBookBorrowExtensionVo">
+        select id, book_id, borrow_id, request_time, approval_time, requested_due_time, approved_due_time, status, approval_comment, gmt_created, gmt_modified from book_borrow_extension
+    </sql>
+
+    <select id="selectBookBorrowExtensionList" parameterType="BookBorrowExtension" resultMap="BookBorrowExtensionResult">
+        <include refid="selectBookBorrowExtensionVo"/>
+        <where>  
+            <if test="bookId != null  and bookId != ''"> and book_id = #{bookId}</if>
+            <if test="borrowId != null  and borrowId != ''"> and borrow_id = #{borrowId}</if>
+            <if test="requestTime != null "> and request_time = #{requestTime}</if>
+            <if test="approvalTime != null "> and approval_time = #{approvalTime}</if>
+            <if test="requestedDueTime != null "> and requested_due_time = #{requestedDueTime}</if>
+            <if test="approvedDueTime != null "> and approved_due_time = #{approvedDueTime}</if>
+            <if test="status != null "> and status = #{status}</if>
+            <if test="approvalComment != null  and approvalComment != ''"> and approval_comment = #{approvalComment}</if>
+            <if test="gmtCreated != null "> and gmt_created = #{gmtCreated}</if>
+            <if test="gmtModified != null "> and gmt_modified = #{gmtModified}</if>
+        </where>
+    </select>
+    
+    <select id="selectBookBorrowExtensionById" parameterType="Long" resultMap="BookBorrowExtensionResult">
+        <include refid="selectBookBorrowExtensionVo"/>
+        where id = #{id}
+    </select>
+        
+    <insert id="insertBookBorrowExtension" parameterType="BookBorrowExtension" useGeneratedKeys="true" keyProperty="id">
+        insert into book_borrow_extension
+        <trim prefix="(" suffix=")" suffixOverrides=",">
+            <if test="bookId != null and bookId != ''">book_id,</if>
+            <if test="borrowId != null and borrowId != ''">borrow_id,</if>
+            <if test="requestTime != null">request_time,</if>
+            <if test="approvalTime != null">approval_time,</if>
+            <if test="requestedDueTime != null">requested_due_time,</if>
+            <if test="approvedDueTime != null">approved_due_time,</if>
+            <if test="status != null">status,</if>
+            <if test="approvalComment != null">approval_comment,</if>
+            <if test="gmtCreated != null">gmt_created,</if>
+            <if test="gmtModified != null">gmt_modified,</if>
+         </trim>
+        <trim prefix="values (" suffix=")" suffixOverrides=",">
+            <if test="bookId != null and bookId != ''">#{bookId},</if>
+            <if test="borrowId != null and borrowId != ''">#{borrowId},</if>
+            <if test="requestTime != null">#{requestTime},</if>
+            <if test="approvalTime != null">#{approvalTime},</if>
+            <if test="requestedDueTime != null">#{requestedDueTime},</if>
+            <if test="approvedDueTime != null">#{approvedDueTime},</if>
+            <if test="status != null">#{status},</if>
+            <if test="approvalComment != null">#{approvalComment},</if>
+            <if test="gmtCreated != null">#{gmtCreated},</if>
+            <if test="gmtModified != null">#{gmtModified},</if>
+         </trim>
+    </insert>
+
+    <update id="updateBookBorrowExtension" parameterType="BookBorrowExtension">
+        update book_borrow_extension
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="bookId != null and bookId != ''">book_id = #{bookId},</if>
+            <if test="borrowId != null and borrowId != ''">borrow_id = #{borrowId},</if>
+            <if test="requestTime != null">request_time = #{requestTime},</if>
+            <if test="approvalTime != null">approval_time = #{approvalTime},</if>
+            <if test="requestedDueTime != null">requested_due_time = #{requestedDueTime},</if>
+            <if test="approvedDueTime != null">approved_due_time = #{approvedDueTime},</if>
+            <if test="status != null">status = #{status},</if>
+            <if test="approvalComment != null">approval_comment = #{approvalComment},</if>
+            <if test="gmtCreated != null">gmt_created = #{gmtCreated},</if>
+            <if test="gmtModified != null">gmt_modified = #{gmtModified},</if>
+        </trim>
+        where id = #{id}
+    </update>
+
+    <delete id="deleteBookBorrowExtensionById" parameterType="Long">
+        delete from book_borrow_extension where id = #{id}
+    </delete>
+
+    <delete id="deleteBookBorrowExtensionByIds" parameterType="Long">
+        delete from book_borrow_extension where id in 
+        <foreach item="id" collection="array" open="(" separator="," close=")">
+            #{id}
+        </foreach>
+    </delete>
+</mapper>
